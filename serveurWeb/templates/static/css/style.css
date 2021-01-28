@@ -1,0 +1,121 @@
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/*** CLASSE ***/
+.maps, .info, .command {
+
+}
+.info {
+  flex: 2;
+  text-align: center;
+  align-items: center;
+}
+.time {
+  font-size: 30px;
+}
+.date {
+  font-size: 30px;
+}
+
+/*** ID ***/
+#containerMaps {
+  position: absolute;
+  height: 100%; 
+  width: 100%;
+  z-index: 1;
+}
+#map {
+  width:100%;
+  height:100%;
+}
+#containerTitre {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  position: absolute;
+  width: 50%;
+  left: 0;
+  right: 0;
+  top: 10px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  z-index: 2;
+}
+#containerInfo {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  position: absolute;
+  width: 15%;
+  top: 10px;
+  left: 10px;
+  background-color: white;
+  z-index: 3;
+}
+#containerBouton {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  position: absolute;
+  width: 15%;
+  height: 10%;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  margin: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  background-color: white;
+  z-index: 4;
+}
+#containerStatus {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  right: 50%;
+  bottom: 10px;
+  margin-right: 2%;
+  position: absolute;
+  background-color: white;
+  z-index: 5;
+}
+#containerError {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  margin-left: 2%;
+  background-color: white;
+  z-index: 6;
+}
+#containerPosition {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  align-items: center;
+  background-color: white;
+  z-index: 7;
+}
+#containerImages {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  bottom: 10px;
+  background-color: white;
+  z-index: 8;
+}
+#mower {
+}
+#image1 {
+  position: absolute;
+  z-index: 2;
+}
+#compass {
+}
+#image2 {
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+}

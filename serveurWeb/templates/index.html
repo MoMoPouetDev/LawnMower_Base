@@ -1,0 +1,99 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Lawmn Mower HomePage</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+  </head>
+  <body>
+    <div id="containerMaps" class="maps">
+        <div id="map"></div>
+    </div>
+
+    <section id="containerTitre">
+      <h1>Lawn Mower Robotic</h1>
+    </section>
+
+    <div id="containerInfo"class="info">
+      <table class="table table-striped">
+        <tr>
+          <th><h3>DATE :</h3></th>
+        </tr>
+        <tr>
+          <th class="date"><span id="jours">01</span>/<span id="mois">01</span>/<span id="annee">1979</span></th>
+        </tr>
+      </table>
+      <table class="table table-striped">
+        <tr>
+          <th><h3>HEURE :</h3></th>
+        </tr>
+        <tr>
+          <th class="time"><span id="heures">00</span>:<span id="minutes">00</span></th>
+        </tr>
+      </table>
+    </div>
+
+    <div id="containerBouton" class="boutons">
+      <button class="btn btn-large btn-success" type="submit" onclick="sendStart()">Start</button>
+      <button class="btn btn-large btn-danger" type="submit" onclick="sendStop()">Stop</button>
+    </div>
+
+    <div id="containerStatus" class="statusMower">
+      <table class="table table-striped">
+        <tr>
+          <th>Status Mower</th>
+        </tr>
+        <tr>
+          <td><span id="status">UNKNOWN</span></td>
+        </tr>
+        </tr>
+      </table>
+    </div>
+    
+    <div id="containerError" class="errorMower">
+      <table class="table table-striped">
+        <tr>
+          <th>Error Mower</th>
+        </tr>
+        <tr>
+          <td><span id="error">UNKNOWN</span></td>
+        </tr>
+        </tr>
+      </table>
+    </div>
+
+    <div id="containerPosition">
+      <table class="table table-striped">
+        <tr>
+          <th>Position Actuelle</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="latitude">XX.XXXXXXX</span></td>
+          <td><span id="longitude">XX.XXXXXXX</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="containerImages">
+      <div id="image1">
+        <img src="static/images/lawnMower.png" alt="Robotic direction" id="mower">
+      </div>
+      <div id="image2">
+        <img src="static/images/compass.png" alt="Rose des vents" id="compass">
+      </div>
+    </div>
+  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQK8p-PkYM-A11L3_T4S_uSU5uEihg6No&callback=initMap"
+    async defer></script>
+  </body>
+  </html>
