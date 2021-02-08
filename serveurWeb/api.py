@@ -9,7 +9,7 @@ from flask_socketio import SocketIO, emit
 from threading import Thread
 
 import json
-#import serial
+import serial
 import time
 import os
 import status
@@ -24,7 +24,7 @@ thread = None
 
 statusMower = 0x08
 receivedData = 0x09
-#serialBle = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1)
+serialBle = serial.Serial('/dev/rfcomm0', baudrate=9600, timeout=1)
 #serialBle.flush();
 
 def read_json():
@@ -40,10 +40,11 @@ def back_thread():
 	data = read_json()
 	while True:
 		print("while loop")
-		#if serialBle.in_waiting > 0:
-		#	status = serialBle.readline()
-		#	receivedData = serialBle.readline()
+		if serialBle.in_waiting > 0:
+			statusMower = serialBle.readline()
+			//status = serialBle.read(17)
 		data_status = status.decodeReceivedData(statusMower, receivedData)
+		print(data)
 		data.update(data_status)
 		print(data)
 		socketio.emit('message', data)
