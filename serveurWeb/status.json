@@ -1,1 +1,1 @@
-{"status": "UNKNOWN_DATA", "error": "EMPTY_BATTERY", "latitude": "49.2315928", "longitude": "1.2470619", "heures": "12", "minutes": "30", "jours": "06", "mois": "03", "annee": "2020"}
+{"status": "ERREUR", "error": "ERREUR", "batterie": "255", "latitude": "259.2527962025", "longitude": "259.2527962025", "heures": "255", "minutes": "255", "jours": "255", "mois": "255", "annee": "2020"}

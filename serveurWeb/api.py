@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3.7
 # app/socket.py
 from gevent import monkey
 monkey.patch_all()
@@ -7,11 +7,14 @@ from flask import Flask, render_template
 from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO, emit
 from threading import Thread
+from bluepy import btle
 
+import binascii
+import struct
 import json
-import serial
 import time
 import os
+
 import status
 
 app = Flask(__name__)
@@ -19,50 +22,43 @@ CORS(app)
 app.config['SECRET_KEY'] = 'cleSecrete'
 app._static_folder = os.path.abspath("templates/static/")
 socketio = SocketIO(app)
+socketio.init_app(app)
+
 thread = None
+data_ble = [b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00']
 
+class MyDelegate(btle.DefaultDelegate):
+    def __init__(self,params):
+        btle.DefaultDelegate.__init__(self)
+    def handleNotification(self,cHandle,data):
+        global data_ble
+        for i in range(0,17):
+            data_ble[i] = binascii.b2a_hex(data[i:(i+1)])
+##        print(data_ble)
 
-statusMower = 0x08
-receivedData = 0x09
-serialBle = serial.Serial('/dev/rfcomm0', baudrate=9600, timeout=1)
-#serialBle.flush();
-
-def read_json():
-	with open('status.json') as json_read:
-		data_dict = json.load(json_read)
-	return data_dict
-
-def write_json(data_dict):
-	with open('status.json', 'w') as json_write:
-		json.dump(data_dict, json_write)
 
 def back_thread():
-	data = read_json()
-	while True:
-		print("while loop")
-		if serialBle.in_waiting > 0:
-			statusMower = serialBle.readline()
-			//status = serialBle.read(17)
-		data_status = status.decodeReceivedData(statusMower, receivedData)
-		print(data)
-		data.update(data_status)
-		print(data)
-		socketio.emit('message', data)
-		time.sleep(3)
+        mower = btle.Peripheral('50:33:8B:F8:5A:90')
+        mower.setDelegate(MyDelegate(0))
+        while True:
+            mower.waitForNotifications(1)
+            data_json = status.decodeReceivedData(data_ble)
+##            print(data_json)
+            socketio.emit('message', data_json)
 
-@app.route('/')	
+@app.route('/') 
 def sessions():
-	global thread
-	if thread is None:
-		thread = Thread(target=back_thread)
-		thread.start()
-	print("appel index")
-	return render_template("index.html")
+        global thread
+        if thread is None:
+                thread = Thread(target=back_thread)
+                thread.start()
+        return render_template("index.html")
 
 @socketio.on('command')
 def get_start_command(json, methods=['GET']):
-	print(str(json))
+    print("event")
+    print(str(json))
 
 if __name__ == '__main__':
-#	app.run()
-	socketio.run(app, host='0.0.0.0', debug=True)
+#       app.run()
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)

@@ -1,6 +1,9 @@
-var socket = io.connect('http://' + document.domain + ':' + location.port);
+var socket = io.connect();
 socket.on( 'message', function( msg ) {
-  console.log( msg )
+  socket.emit('command', {
+    data: 'test'
+    })
+  console.log(msg);
   var elementStatus = document.getElementById("status");
   elementStatus.innerHTML = msg.status;
   var elementError = document.getElementById("error");
@@ -23,13 +26,13 @@ socket.on( 'message', function( msg ) {
 
 function sendStart() {
   socket.emit('command', {
-    command : 'Start'
-  })
+    "command": "Start"
+    })
 }
 
 function sendStop() {
   socket.emit('command', {
-    command : 'Stop'
+    "command": "Stop"
   })
 }
 
