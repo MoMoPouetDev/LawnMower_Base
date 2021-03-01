@@ -44,6 +44,22 @@ html, body {
   background-color: white;
   z-index: 2;
 }
+#batterie {
+    position: absolute;
+    width: 60px;
+    height: 70px;
+    right: 10px;
+    top: 10px;
+    background-color: white;
+    z-index: 9;
+}
+#batterie.bi {
+    position: absolute;
+    margin-left: 6px;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
 #containerInfo {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8), 6px 6px 20px 0 rgba(0,0,0,2);
   position: absolute;
@@ -119,3 +135,68 @@ html, body {
   right: 0;
   bottom: 0;
 }
+
+@media all and (orientation: portrait)
+{
+    
+    .time {
+        font-size: 12px;
+    }
+    .date {
+        font-size: 12px;
+    }
+    h1 {
+        font-size: 15px;
+    }
+    #containerInfo {
+        display: none;
+        top: 50px;
+    }
+    h3, th, td {
+        font-size: 12px;
+    }
+    #containerPosition {
+        display: none;
+    }
+    #containerBouton {
+        top: 50px;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #containerStatus {
+        right: auto;
+        left: 130px;
+        margin-right: auto;
+    }
+    #containerError {
+        right: auto;
+        left: 10px;
+        margin-left: auto;
+    }
+    #containerImages {
+        width: 100px;
+        height: 100px;
+        right: 10px;
+        bottom: 10px;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+    #mower {
+        width: 50%;
+        height: auto;
+        margin-left: 25px;
+        margin-right: auto;
+    }
+    #image2 {
+        right: 0;
+        left: 0;
+        bottom: auto;
+    }
+}
+

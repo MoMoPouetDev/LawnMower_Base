@@ -30,7 +30,6 @@ class Command(Enum):
     
 def decodeReceivedData(data_ble):
     data_json = read_json()
-    
     etatMower = data_ble[0]
     res = decodeStatusMower(etatMower)
     data_json.update(res)
@@ -73,6 +72,11 @@ def decodeReceivedData(data_ble):
 
     monthsGPS = data_ble[16] 
     res = decodeMonths(monthsGPS)
+    data_json.update(res)
+
+    angleMSB = data_ble[17]
+    angleLSB = data_ble[18]
+    res= decodeAngle(angleMSB, angleLSB)
     data_json.update(res)
 
     write_json(data_json)
@@ -150,6 +154,10 @@ def decodeDays(daysGPS):
 def decodeMonths(monthsGPS):
     mois = str(int(monthsGPS,16))
     return {"mois": mois}
+
+def decodeAngle(angleMSB, angleLSB):
+    angle = str(int((angleMSB + angleLSB),16))
+    return {"angle": angle}
 
 def read_json():
     with open('status.json') as json_read:
