@@ -6,30 +6,37 @@ $( window ).on( "load", function() {
             }).then(function (msg) {
                     
                     console.log(msg);
-                    var elementStatus = document.getElementById("status");
-                    elementStatus.innerHTML = msg.status;
-                    var elementError = document.getElementById("error");
-                    elementError.innerHTML = msg.error;
-                    var elementLatitude = document.getElementById("latitude");
-                    elementLatitude.innerHTML = msg.latitude;
-                    var elementLongitude = document.getElementById("longitude");
-                    elementLongitude.innerHTML = msg.longitude;
-                    var elementHeures = document.getElementById("heures");
-                    elementHeures.innerHTML = msg.heures;
-                    var elementMinutes = document.getElementById("minutes");
-                    elementMinutes.innerHTML = msg.minutes;
-                    var elementJours = document.getElementById("jours");
-                    elementJours.innerHTML = msg.jours;
-                    var elementMois = document.getElementById("mois");
-                    elementMois.innerHTML = msg.mois;
-                    var elementAnnee = document.getElementById("annee");
-                    elementAnnee.innerHTML = msg.annee;
-                    var elementBatterie = document.getElementById("pourcentage");
-                    elementBatterie.innerHTML = msg.batterie;
-                    batterie(msg.batterie);
-                    angleFromNorth(msg.angle);
+                    if( msg.connection ) {
+                        if(!alert('Disconnection Detected')) {
+                            window.location.reload();
+                        }
+                    }
+                    else {
+                        var elementStatus = document.getElementById("status");
+                        elementStatus.innerHTML = msg.status;
+                        var elementError = document.getElementById("error");
+                        elementError.innerHTML = msg.error;
+                        var elementLatitude = document.getElementById("latitude");
+                        elementLatitude.innerHTML = msg.latitude;
+                        var elementLongitude = document.getElementById("longitude");
+                        elementLongitude.innerHTML = msg.longitude;
+                        var elementHeures = document.getElementById("heures");
+                        elementHeures.innerHTML = msg.heures;
+                        var elementMinutes = document.getElementById("minutes");
+                        elementMinutes.innerHTML = msg.minutes;
+                        var elementJours = document.getElementById("jours");
+                        elementJours.innerHTML = msg.jours;
+                        var elementMois = document.getElementById("mois");
+                        elementMois.innerHTML = msg.mois;
+                        var elementAnnee = document.getElementById("annee");
+                        elementAnnee.innerHTML = msg.annee;
+                        var elementBatterie = document.getElementById("pourcentage");
+                        elementBatterie.innerHTML = msg.batterie;
+                        batterie(msg.batterie);
+                        angleFromNorth(msg.angle);
+                    }
           }); 
-    }, 1000);  
+    }, 500);  
 });
 
 function batterie(batterieLevel) {

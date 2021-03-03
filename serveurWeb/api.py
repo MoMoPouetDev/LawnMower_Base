@@ -20,6 +20,7 @@ app._static_folder = os.path.abspath("templates/static/")
 thread = None
 data_ble = [b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00']
 mower = None
+flagDisconnect = False
 
 class MyDelegate(btle.DefaultDelegate):
     def __init__(self,params):
@@ -30,12 +31,29 @@ class MyDelegate(btle.DefaultDelegate):
             data_ble[i] = binascii.b2a_hex(data[i:(i+1)])
 
 def back_thread():
-        global mower
+    global flagDisconnect
+    global thread
+
+    connect_mower()
+    mower.setDelegate(MyDelegate(0))
+    while True:
+        try:
+            if mower.waitForNotifications(0.5):
+                flagDisconnect = False
+                continue
+        except btle.BTLEDisconnectError:
+            print("Connection Error")
+            flagDisconnect = True
+            thread = None
+            pass
+
+def connect_mower():
+    global mower
+    try:
         mower = btle.Peripheral('50:33:8B:F8:5A:90')
-        mower.setDelegate(MyDelegate(0))
-        while True:
-            mower.waitForNotifications(1)
-            i = 1
+    except Exception as e:
+        print("Connection Error",e)
+        return connect_mower()
 
 @app.route('/') 
 def sessions():
@@ -48,12 +66,14 @@ def sessions():
 @app.route('/ble', methods=['GET', 'POST'])
 def ble():
     if request.method == 'GET':
-        print("ble")
-        print(data_ble)
-        data_json = status.decodeReceivedData(data_ble)
-        print("json")
-        print(data_json)
-        return jsonify(data_json)
+        if flagDisconnect == True:
+            print("TEST")
+            return jsonify(connection="Error")
+
+        if flagDisconnect == False:
+            data_json = status.decodeReceivedData(data_ble)
+            print("JSON ",data_json)
+            return jsonify(data_json)
 
     if request.method == 'POST':
         print(request.get_json())  # parse as JSON
