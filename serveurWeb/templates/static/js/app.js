@@ -53,7 +53,8 @@ function initMap() {
   var marker = new google.maps.Marker({
     position: baseCoordinates,
     map: map,
-    title: 'Station'
+    title: 'Station',
+    icon: '/serveurWeb/templates/static/images/maker.png'
   });
   var workingPath = new google.maps.Polyline({
     path: workingCoordinates,

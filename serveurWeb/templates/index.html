@@ -12,85 +12,66 @@
     <script type="text/javascript" src="static/js/app.js"></script>
   </head>
   <body>
-    <div id="containerMaps" class="maps">
-        <div id="map"></div>
-    </div>
+ 
+    <div id="core">
 
-    <section id="containerTitre">
-      <h1>Lawn Mower Robotic</h1>
-    </section>
-
-    <div id="containerInfo"class="info">
-      <table class="table table-striped">
-        <tr>
-          <th><h3>DATE :</h3></th>
-        </tr>
-        <tr>
-          <th class="date"><span id="jours">01</span>/<span id="mois">01</span>/<span id="annee">1979</span></th>
-        </tr>
-      </table>
-      <table class="table table-striped">
-        <tr>
-          <th><h3>HEURE :</h3></th>
-        </tr>
-        <tr>
-          <th class="time"><span id="heures">00</span>:<span id="minutes">00</span></th>
-        </tr>
-      </table>
-    </div>
-
-    <div id="containerBouton" class="boutons">
-      <button class="btn btn-large btn-success" type="submit" onclick="sendStart()">Start</button>
-      <button class="btn btn-large btn-danger" type="submit" onclick="sendStop()">Stop</button>
-    </div>
-
-    <div id="containerStatus" class="statusMower">
-      <table class="table table-striped">
-        <tr>
-          <th>Status Mower</th>
-        </tr>
-        <tr>
-          <td><span id="status">UNKNOWN</span></td>
-        </tr>
-        </tr>
-      </table>
+      
+    <div id="containerController">
+      <section id="containerTitre">
+        <h1>Lawn Mower Robotic</h1>
+      </section>
+  
+      <div id="containerInfo"class="info">
+        <div class="date">
+          <h5>Date :</h5>
+            <span id="jours">01</span>/<span id="mois">01</span>/<span id="annee">1979</span>
+          </div>
+          <div class="time">
+            <h5>Heure :</h5>
+            <span id="heures">00</span>:<span id="minutes">00</span>
+          </div>
+      </div>
+  
+      <div id="containerBouton" class="boutons">
+        <button class="success" type="submit" onclick="sendStart()">Start</button>
+        <button class="danger" type="submit" onclick="sendStop()">Stop</button>
+      </div>
+  
+      <div id="containerStatus" class="statusMower">   
+        <h5>Status Mower</h5>
+        <p><span id="status">UNKNOWN</span></p>
+      </div>
+      
+      <div id="containerError" class="errorMower">
+        <h5>Error Mower</h5>
+          <p><span id="error">UNKNOWN</span></p>
+      </div>
+  
+      <div id="containerPosition">
+            <h5>Position Actuelle</h5>
+            <div>
+              <p>Lat : <span id="latitude">XX.XXXXXXX</span></p>
+              <p>Lng : <span id="longitude">XX.XXXXXXX</span></p>
+            </div>
+           
+      </div>
+  
+      
+  
     </div>
     
-    <div id="containerError" class="errorMower">
-      <table class="table table-striped">
-        <tr>
-          <th>Error Mower</th>
-        </tr>
-        <tr>
-          <td><span id="error">UNKNOWN</span></td>
-        </tr>
-        </tr>
-      </table>
-    </div>
-
-    <div id="containerPosition">
-      <table class="table table-striped">
-        <tr>
-          <th>Position Actuelle</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span id="latitude">XX.XXXXXXX</span></td>
-          <td><span id="longitude">XX.XXXXXXX</span></td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="containerImages">
-      <div id="image1">
-        <img src="static/images/lawnMower.png" alt="Robotic direction" id="mower">
+    <div id="containerMaps" class="maps">
+      <div id="map"></div>
+      <div id="containerImages">
+        <div id="image1">
+          <img src="static/images/lawnMower.png" alt="Robotic direction" id="mower">
+        </div>
+        <div id="image2">
+          <img src="static/images/compass.png" alt="Rose des vents" id="compass">
+        </div>
       </div>
-      <div id="image2">
-        <img src="static/images/compass.png" alt="Rose des vents" id="compass">
-      </div>
-    </div>
+  </div>
+</div>
   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQK8p-PkYM-A11L3_T4S_uSU5uEihg6No&callback=initMap"
