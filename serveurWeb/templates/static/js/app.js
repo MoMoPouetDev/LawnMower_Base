@@ -36,7 +36,7 @@ $( window ).on( "load", function() {
                         angleFromNorth(msg.angle);
                     }
           }); 
-    }, 5000000);  
+    }, 500);  
 });
 
 function batterie(batterieLevel) {
