@@ -19,18 +19,25 @@ h1 {
 
 }
 
+#containerInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 200px;
+  padding-top: 1em;
+  font-size: 20px;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 300;
+}
 .time {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  line-height: 32px;
-  font-size: 32px;
+
 }
 .date {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  font-size: 16px;
 }
 
 span {
@@ -47,69 +54,41 @@ span {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background-image: url('/serveurWeb/templates/static/images/fond2.jpg');
-  background-size: cover;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1em 0;
 }
 
-#containerController {
-  width: 30%;
-  height: 100%;
+.information {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-evenly;
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-radius: 1em;
-  background-color: rgba(219, 219, 219, 0.349);
-  opacity: 1;
-  margin: 0 .5em 0 1em;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  align-items: center;
+  height: 60px;
 }
 
 #containerMaps {
   height: 100%; 
   width: 100%;
-  margin: 0 1em 0 .5em;
-  padding: 1em;
   background-color: rgba(219, 219, 219, 0.349);
-  border-radius: 1em;
 }
 #map {
   width:100%;
   height:100%;
-  border-radius: 1em;
 }
-#containerTitre {
-  text-align: center;
-  border: .1em solid white;
-  padding: .3em .5em;
-}
+
 #batterie {
-    position: absolute;
-    width: 60px;
-    height: 70px;
-    right: 10px;
-    top: 10px;
-    background-color: transparent;
-    z-index: 9;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+margin-right: 1em;
 }
-#batterie.bi {
-    position: absolute;
-    margin-left: 6px;
-    top: 0;
-    width: 100%;
-    height: auto;
+.bi {
+    margin-left: 10px;
 }
 
 #level {
-  position: absolute;
-  top: 10px;
-  right: 70px;
-  line-height: 35px;
+  
 }
 
 .bi-battery-full {
@@ -118,29 +97,14 @@ span {
 .bi-battery-full,
 .bi-battery,
 .bi-battery-charging {
-  display: none;
-
+display: none;
 }
-#containerInfo {
-  width: 100%;
-  height: auto;
+
+#containerButton {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-  background-color: white;  
 }
-#containerBouton {
-  width: 90%;
-  height: 50px;
 
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: beige;
-
-}
 button {
   cursor: pointer;
   width: 100px;
@@ -148,24 +112,23 @@ button {
   border-radius: 4px;
   font-size: 15px;
   line-height: 15px;
-  margin: .5em;
   transition: 0.3s;
 }
 .success {
-  background-color: rgb(0, 255, 170);
+  background-color: rgb(3, 144, 121);
   color: white;
-  border: 1px solid rgb(0, 255, 85);
+  border: 1px solid rgb(1, 212, 159);
 
 }
 .success:hover {
-  background-color: rgb(0, 255, 115);
+  background-color: rgb(28, 255, 175);
   color: #282c34;
 }
 
 .danger {
-  background-color: #fb7361;
+  background-color: #c62914;
   color: #282c34;
-  border: 1px solid #fe0000;
+  border: 1px solid #f50101;
 }
 
 .danger:hover {
@@ -173,31 +136,6 @@ button {
   color: #FFFFFF;
 }
 
-#containerStatus {
- 
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center; 
-
-}
-#containerError {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;  
- 
- 
-}
-#containerPosition {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;  
-}
 #containerImages {
   position: relative;
   bottom: 120px;
@@ -224,86 +162,151 @@ button {
   
 }
 
-@media screen and (max-width: 450px) {
-  #core {
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    padding: .5em;
-  }
-
-  #containerController {
-    width: 100%;
-    height: 50%;
-    margin: 0 0 .2em 0;
-    padding: .5em;
-  }
-
-  #containerMaps {
-    margin: .2em 0 0 0;
-  }
-}
-/* @media all and (orientation: portrait)
-{
-    
-    .time {
-        font-size: 12px;
-    }
-    .date {
-        font-size: 12px;
-    }
-    h1 {
-        font-size: 15px;
-    }
-    #containerInfo {
-        display: none;
-        top: 50px;
-    }
-    h3, th, td {
-        font-size: 12px;
-    }
-    #containerPosition {
-        display: none;
-    }
-    #containerBouton {
-        top: 50px;
-        bottom: auto;
-        left: 0;
-        right: 0;
-        margin: auto;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    #containerStatus {
-        right: auto;
-        left: 130px;
-        margin-right: auto;
-    }
-    #containerError {
-        right: auto;
-        left: 10px;
-        margin-left: auto;
-    }
-    #containerImages {
-        width: 100px;
-        height: 100px;
-        right: 10px;
-        bottom: 10px;
-    }
-    img {
-        width: 100%;
-        height: auto;
-    }
-    #mower {
-        width: 50%;
-        height: auto;
-        margin-left: 25px;
-        margin-right: auto;
-    }
-    #image2 {
-        right: 0;
-        left: 0;
-        bottom: auto;
-    }
-}
- */
+ @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+ html, body {
+     overflow-x: hidden;
+     height: 100%;
+ }
+ body {
+     background: #fff;
+     padding: 0;
+     margin: 0;
+     font-family: 'Varela Round', sans-serif;
+ }
+ .header {
+     display: flex;
+     margin: 0 auto;
+     width: 100%;
+     max-width: 100%;
+     box-shadow: none;
+     background-image: url('/serveurWeb/templates/static/images/fond2.jpg');
+     position: fixed;
+     height: 60px!important;
+     overflow: hidden;
+     z-index: 10;
+     justify-content: flex-end;
+ }
+ .main {
+     margin: 0 auto;
+     display: block;
+     height: 100%;
+     margin-top: 60px;
+ }
+ .mainInner{
+     display: table;
+     height: 100%;
+     width: 100%;
+     text-align: center;
+ }
+ .mainInner div{
+     display:table-cell;
+     vertical-align: middle;
+     font-size: 3em;
+     font-weight: bold;
+     letter-spacing: 1.25px;
+ }
+ #sidebarMenu {
+     height: 100%;
+     position: fixed;
+     left: 0;
+     width: 250px;
+     margin-top: 60px;
+     transform: translateX(-250px);
+     transition: transform 250ms ease-in-out;
+     background-image: url('/serveurWeb/templates/static/images/fond2.jpg');
+     background-size: cover;
+     z-index: 2;
+ }
+ .sidebarMenuInner{
+     margin:0;
+     padding:0;
+     border-top: 1px solid rgba(255, 255, 255, 0.10);
+ }
+ .sidebarMenuInner li{
+     list-style: none;
+     color: #fff;
+     text-transform: uppercase;
+     font-weight: bold;
+     padding: 20px;
+     cursor: pointer;
+     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+ }
+ .sidebarMenuInner li span{
+     display: block;
+     font-size: 14px;
+     color: rgba(255, 255, 255, 0.50);
+ }
+ .sidebarMenuInner li a{
+     color: #fff;
+     text-transform: uppercase;
+     font-weight: bold;
+     cursor: pointer;
+     text-decoration: none;
+ }
+ input[type="checkbox"]:checked ~ #sidebarMenu {
+     transform: translateX(0);
+ }
+ 
+ input[type=checkbox] {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     display: none;
+ }
+ .sidebarIconToggle {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     cursor: pointer;
+     position: absolute;
+     z-index: 99;
+     height: 100%;
+     width: 100%;
+     top: 22px;
+     left: 15px;
+     height: 22px;
+     width: 22px;
+ }
+ .spinner {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     position: absolute;
+     height: 3px;
+     width: 100%;
+     background-color: #fff;
+ }
+ .horizontal {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     position: relative;
+     float: left;
+     margin-top: 3px;
+ }
+ .diagonal.part-1 {
+     position: relative;
+     transition: all 0.3s;
+     box-sizing: border-box;
+     float: left;
+ }
+ .diagonal.part-2 {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     position: relative;
+     float: left;
+     margin-top: 3px;
+ }
+ input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     opacity: 0;
+ }
+ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     transform: rotate(135deg);
+     margin-top: 8px;
+ }
+ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+     transition: all 0.3s;
+     box-sizing: border-box;
+     transform: rotate(-135deg);
+     margin-top: -9px;
+ }

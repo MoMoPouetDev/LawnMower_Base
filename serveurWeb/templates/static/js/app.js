@@ -36,7 +36,7 @@ $( window ).on( "load", function() {
                         angleFromNorth(msg.angle);
                     }
           }); 
-    }, 500);  
+    }, 5000000);  
 });
 
 function batterie(batterieLevel) {
@@ -115,9 +115,9 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 49.231649, lng: 1.246940},
     zoom: 21,
-    scrollwheel: true,
+    scrollwheel: false,
     navigationControl: true,
-    mapTypeControl: true,
+    mapTypeControl: false,
     scaleControl: true,
     draggable: false,
     disableDefaultUI: true,
