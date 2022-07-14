@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 from flask_mqtt import Mqtt
 from threading import Thread
 from bluepy import btle
+from gpiozero import Button, LED
 from logging.handlers import RotatingFileHandler
 
 import paho.mqtt.client as mqtt
@@ -34,6 +35,9 @@ app._static_folder = os.path.abspath("templates/static/")
 broker_address="192.168.1.108"
 mqtt.Client.connected_flag=False
 
+led_IR = LED(3)
+button_IR = Button(5)
+
 thread = None
 data_ble = [b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00',b'00']
 mower = None
@@ -53,7 +57,10 @@ class MyDelegate(btle.DefaultDelegate):
 def back_thread():
     global flagBleDisconnect
     global flagMqttReceived
+
     test = 0
+    led_IR.on()    
+
     connect_mower()
     mower.setDelegate(MyDelegate(0))
     while True:
@@ -69,6 +76,10 @@ def back_thread():
             logger.debug("BLE Disconnected")
             flagBleDisconnect = True
             return back_thread()
+        if button_IR.is_pressed:
+            print("pressed")
+        else:
+            print("not pressed")
 
 def connect_mower():
     global mower
