@@ -116,14 +116,14 @@ function initMap() {
     center: {lat: 49.231649, lng: 1.246940},
     zoom: 21,
     scrollwheel: false,
-    navigationControl: false,
+    navigationControl: true,
     mapTypeControl: false,
-    scaleControl: false,
+    scaleControl: true,
     draggable: false,
     disableDefaultUI: true,
     mapTypeId: 'satellite'
   });
-  const image = '/static/images/iconLawnMower.png';
+  const image = '/serveurWeb/templates/static/images/maker.png';
   const marker = new google.maps.Marker({
     position: baseCoordinates,
     map: map,

@@ -1,121 +1,126 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <title>Lawmn Mower HomePage</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="static/js/app.js"></script>
-  </head>
-  <body>
-    <div id="containerMaps" class="maps">
-        <div id="map"></div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <section id="containerTitre">
-      <h1>Lawn Mower Robotic</h1>
-    </section>
+<head>
+  <title>Lawmn Mower HomePage</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="static/js/app.js"></script>
+</head>
 
-    <div id="batterie">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="full" class="bi bi-battery-full" viewBox="0 0 16 16">
-            <path d="M2 6h10v4H2V6z"/>
-            <path d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h10zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z"/>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="half" class="bi bi-battery-half" viewBox="0 0 16 16">
-            <path d="M2 6h5v4H2V6z"/>
-            <path d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h10zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z"/>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="empty" class="bi bi-battery" viewBox="0 0 16 16">
-            <path d="M0 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm2-1a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2zm14 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z"/>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="charge" class="bi bi-battery-charging" viewBox="0 0 16 16">
-            <path d="M9.585 2.568a.5.5 0 0 1 .226.58L8.677 6.832h1.99a.5.5 0 0 1 .364.843l-5.334 5.667a.5.5 0 0 1-.842-.49L5.99 9.167H4a.5.5 0 0 1-.364-.843l5.333-5.667a.5.5 0 0 1 .616-.09z"/>
-            <path d="M2 4h4.332l-.94 1H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2.38l-.308 1H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-            <path d="M2 6h2.45L2.908 7.639A1.5 1.5 0 0 0 3.313 10H2V6zm8.595-2l-.308 1H12a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9.276l-.942 1H12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.405z"/>
-            <path d="M12 10h-1.783l1.542-1.639c.097-.103.178-.218.241-.34V10zm0-3.354V6h-.646a1.5 1.5 0 0 1 .646.646zM16 8a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z"/>
-        </svg>
-        <span id="pourcentage">0</span><span>%</span>
-    </div>
-
-    <div id="containerInfo"class="info">
-      <table class="table table-striped">
-        <tr>
-          <th><h3>DATE :</h3></th>
-        </tr>
-        <tr>
-          <th class="date"><span id="jours">01</span>/<span id="mois">01</span>/<span id="annee">1979</span></th>
-        </tr>
-      </table>
-      <table class="table table-striped">
-        <tr>
-          <th><h3>HEURE :</h3></th>
-        </tr>
-        <tr>
-          <th class="time"><span id="heures">00</span>:<span id="minutes">00</span></th>
-        </tr>
-      </table>
-    </div>
-
-    <div id="containerBouton" class="boutons">
-      <button class="btn btn-large btn-success" type="submit" onclick="sendStart()">Start</button>
-      <button class="btn btn-large btn-danger" type="submit" onclick="sendStop()">Stop</button>
-    </div>
-
-    <div id="containerStatus" class="statusMower">
-      <table class="table table-striped">
-        <tr>
-          <th>Status Mower</th>
-        </tr>
-        <tr>
-          <td><span id="status">UNKNOWN</span></td>
-        </tr>
-        </tr>
-      </table>
-    </div>
-    
-    <div id="containerError" class="errorMower">
-      <table class="table table-striped">
-        <tr>
-          <th>Error Mower</th>
-        </tr>
-        <tr>
-          <td><span id="error">UNKNOWN</span></td>
-        </tr>
-        </tr>
-      </table>
-    </div>
-
-    <div id="containerPosition">
-      <table class="table table-striped">
-        <tr>
-          <th>Position Actuelle</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span id="latitude">XX.XXXXXXX</span></td>
-          <td><span id="longitude">XX.XXXXXXX</span></td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="containerImages">
-      <div id="image1">
-        <img src="static/images/lawnMower.png" alt="Robotic direction" id="mower">
-      </div>
-      <div id="image2">
-        <img src="static/images/compass.png" alt="Rose des vents" id="compass">
-      </div>
-    </div>
+<body>
+  <div id="core">
+    <div class="header">
+      <div class="information">
+        <div id="containerInfo" class="info">
+          <div class="time">
+            <p id="heures">00</p><p>:</p><p id="minutes">00</p>
+          </div>
+          <div class="date">
+            <p id="jours">01</p><p>/</p><p id="mois">01</p><p>/</p><p id="annee">1979</p>
+          </div>
+        </div>
+        <div id="batterie">
+          <div id="level">
+            <span id="pourcentage">100</span><span>%</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="full"
+            class="bi bi-battery-full" viewBox="0 0 16 16">
+            <path d="M2 6h10v4H2V6z" />
+            <path
+              d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h10zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="half"
+            class="bi bi-battery-half" viewBox="0 0 16 16">
+            <path d="M2 6h5v4H2V6z" />
+            <path
+              d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h10zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="empty"
+            class="bi bi-battery" viewBox="0 0 16 16">
+            <path
+              d="M0 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6zm2-1a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H2zm14 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" id="charge"
+            class="bi bi-battery-charging" viewBox="0 0 16 16">
+            <path
+              d="M9.585 2.568a.5.5 0 0 1 .226.58L8.677 6.832h1.99a.5.5 0 0 1 .364.843l-5.334 5.667a.5.5 0 0 1-.842-.49L5.99 9.167H4a.5.5 0 0 1-.364-.843l5.333-5.667a.5.5 0 0 1 .616-.09z" />
+            <path d="M2 4h4.332l-.94 1H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2.38l-.308 1H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+            <path
+              d="M2 6h2.45L2.908 7.639A1.5 1.5 0 0 0 3.313 10H2V6zm8.595-2l-.308 1H12a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9.276l-.942 1H12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.405z" />
+            <path
+              d="M12 10h-1.783l1.542-1.639c.097-.103.178-.218.241-.34V10zm0-3.354V6h-.646a1.5 1.5 0 0 1 .646.646zM16 8a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8z" />
+          </svg>
   
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQK8p-PkYM-A11L3_T4S_uSU5uEihg6No&callback=initMap"
+        </div>
+      </div>
+
+      <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+      <label for="openSidebarMenu" class="sidebarIconToggle">
+        <div class="spinner diagonal part-1"></div>
+        <div class="spinner horizontal"></div>
+        <div class="spinner diagonal part-2"></div>
+      </label>
+      <div id="sidebarMenu">
+        <ul class="sidebarMenuInner">
+          <li>Lawn Mower<span>Robotic</span></li>
+          <li>
+            <div id="containerStatus" class="statusMower">
+              Status Mower
+              <span id="status">UNKNOWN</span>
+            </div>
+          </li>
+          <li>
+            <div id="containerError" class="errorMower">
+              Error Mower
+              <span id="error">UNKNOWN</span>
+            </div>
+          </li>
+          <li>
+            <div id="containerPosition">
+              Position Actuelle
+              <div>
+                <p>Lat : <span id="latitude">XX.XXXXXXX</span></p>
+                <p>Lng : <span id="longitude">XX.XXXXXXX</span></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="containerBouton" class="boutons">
+              <button class="success" type="submit" onclick="sendStart()">Start</button>
+              <button class="danger" type="submit" onclick="sendStop()">Stop</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="containerMaps" class="maps">
+      <div id="map"></div>
+      <div id="containerImages">
+        <div id="image1">
+          <img src="static/images/lawnMower.png" alt="Robotic direction" id="mower">
+        </div>
+        <div id="image2">
+          <img src="static/images/compass.png" alt="Rose des vents" id="compass">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQK8p-PkYM-A11L3_T4S_uSU5uEihg6No&callback=initMap"
     async defer></script>
-  </body>
-  </html>
+</body>
+
+</html>
